@@ -1,0 +1,18 @@
+syntax = "proto3";
+package chat;
+
+option go_package = "./my_chat";
+
+message ChatMessage {
+  string text = 1;
+}
+
+service ChatService {
+  rpc Hi(ChatMessage) returns (ChatMessage) {}
+  rpc HiStream(ChatMessage) returns (stream ChatMessage){}
+}
+
+
+service DockerExec {
+  rpc Exec(stream ChatMessage) returns(stream ChatMessage){}
+}
